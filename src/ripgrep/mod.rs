@@ -25,7 +25,7 @@ mod args;
 mod dirs;
 mod thread;
 
-pub fn run(args: &[String]) -> Result<(), String> {
+pub fn run(args: &[String]) -> Result<(), Box<dyn std::error::Error>> {
     let search_string = args.get(0).ok_or("Missing searching string")?;
     let path = args.get(1).ok_or("Missing path to make the search")?;
 
