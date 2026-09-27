@@ -1,4 +1,5 @@
 mod git;
+mod rcu_cache;
 mod ripgrep;
 
 struct HandleExercises {
@@ -21,6 +22,12 @@ impl HandleExercises {
         exercises.push((
             "git".into(),
             Box::new(git::run)
+                as Box<dyn FnMut(&[String]) -> Result<(), Box<dyn std::error::Error>>>,
+        ));
+
+        exercises.push((
+            "rcu".into(),
+            Box::new(rcu_cache::run)
                 as Box<dyn FnMut(&[String]) -> Result<(), Box<dyn std::error::Error>>>,
         ));
 
